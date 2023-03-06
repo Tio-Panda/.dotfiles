@@ -15,6 +15,7 @@ if [[ -z $selected ]]; then
 fi
 
 #selected_name=$(basename "$selected" | tr . _)
+#TODO: Arreglar que, como estamos en dotfiles, eliminarlo para que el nombre en tmux no sea tan largo
 selected_name=$(echo $selected | sed --expression "s@$HOME/@@" | tr -d .| tr / -)
 
 if [[ -z $selected_name ]]; then
