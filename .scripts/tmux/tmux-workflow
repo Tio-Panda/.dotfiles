@@ -1,0 +1,29 @@
+#!/bin/bash
+
+if [[ $# -eq 1 ]]; then
+    selected=$1
+else
+    workflows=`echo "web terminal" | tr ' ' '\n'`
+    selected=`printf "$workflows" | fzf`
+fi
+
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+if [[ $selected == "web" ]]; then
+    tmux neww -c "backend" -n "backend"
+    tmux split-window -h
+    tmux swap-pane -D
+    tmux send-keys "nvim" Enter
+    tmux neww -c "frontend" -n "frontend"
+    tmux split-window -h
+    tmux swap-pane -D
+    tmux send-keys "nvim" Enter
+    tmux select-window -t "backend"
+    tmux kill-window -t "zsh"
+fi
+
+if [[ $selected == "nr" ]]; then
+    tmux send-keys "nvim" Enter "1" Enter
+fi

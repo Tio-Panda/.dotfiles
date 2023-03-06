@@ -1,0 +1,35 @@
+#!/bin/bash
+
+selected=$(tmux display-message -p '#S')
+
+if [[ $selected == "nrc" ]]; then
+    # Abir ambos fzf en las 2 ventanas y dejar puesta la primera
+    tmux send-keys "nvim" Enter
+    tmux neww -n "base" -S -c "$HOME/.config/nvim/lua/panda/"
+    tmux send-keys "nvim" Enter
+    tmux select-window -t "plugin"
+    exit 0
+fi
+
+if [[ $selected == "trc" ]]; then
+    tmux send-keys "nvim tmux.conf" Enter
+    exit 0
+fi
+
+if [[ $selected == "zrc" ]]; then
+    tmux send-keys "nvim" Enter
+    exit 0
+fi
+
+if [[ $selected == "arc" ]]; then
+    tmux send-keys "nvim alacritty.yml" Enter
+    tmux neww -n "win" -S -c "/mnt/c/Users/sebas/AppData/Roaming/alacritty/"
+    tmux send-keys "nvim alacritty.yml" Enter
+    exit 0
+fi
+
+if [[ $selected == "llo" ]]; then
+    tmux neww tmux-obsidian 0
+    exit 0
+fi
+

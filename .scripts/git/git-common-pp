@@ -1,0 +1,13 @@
+#!/bin/bash
+
+selected=`echo "$OBSIDIAN $HOME/tareas/" | tr ' ' '\n' | fzf`
+date=$(date '+%Y/%m/%d - %H:%M')
+
+cd $selected
+if [[ $1 == 'push' ]]; then
+    git add . && git commit -m "Sync $date" && git push
+fi
+
+if [[ $1 == 'pull' ]]; then
+    git pull
+fi

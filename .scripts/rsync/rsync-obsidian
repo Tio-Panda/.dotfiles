@@ -1,0 +1,34 @@
+#!/bin/bash
+# NOTE: You are choosing the SOURCE
+
+win="/mnt/c/Users/sebas/Desktop/lloTest/"
+
+if [[ $# -eq 1 ]]; then
+    selected=''
+else
+    mode=`echo "Source=Windows Source=Linux" | tr ' ' '\n'`
+    selected=`printf "$mode" | fzf`
+fi
+
+pwd=$(basename "`pwd`")
+isObsidian=`find "$OBSIDIAN" -type d -name "$pwd"`
+
+if [[ -z $isObsidian ]]; then
+    echo "Diríjase al directorio de LLO para la sincronizacion"
+    exit 0
+fi
+
+# From windows to Linux
+if [[ $1 == 'windows' ]] || [[ $selected == 'Source=Windows' ]]; then
+    echo 'print win->linux'
+    rsync -hvrPt $win $OBSIDIAN --include='**.gitignore' --exclude='/.git' --filter=':- .gitignore' --delete-after
+    exit 0
+fi    
+
+# From Linux to Windows
+if [[ $1 == 'linux' ]] || [[ $selected == 'Source=Linux' ]]; then
+    echo 'print linux->win'
+    rsync -hvrPt $OBSIDIAN $win --include='**.gitignore' --exclude='/.git' --filter=':- .gitignore' --delete-after
+    exit 0
+fi
+

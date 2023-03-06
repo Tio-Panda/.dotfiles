@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Created by: ThePrimeagen
+#
+selected=`cat  ~/.scripts/tmux/cht-lang ~/.scripts/tmux/cht-comm | fzf`
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+echo "Ctrl + c to exit"
+read -p "Query: " query
+#read "query?Query: "
+
+if grep -qs "$selected" ~/.scripts/tmux/cht-lang; then
+    query=`echo $query | tr ' ' '+'`
+    tmux neww bash -c "echo \"curl cht.sh/$selected/$query/\" & curl cht.sh/$selected/$query & while [ : ]; do sleep 1; done"
+
+    # cht.sh local
+    # tmux neww bash -c "cht.sh $selected $query & while [ : ]; do sleep 1; done"
+else
+    tmux neww bash -c "curl -s cht.sh/$selected~$query & while [ : ]; do sleep 1; done"
+
+    # cht.sh local
+    # tmux neww bash -c "cht.sh $selected~$query & while [ : ]; do sleep 1; done"
+fi

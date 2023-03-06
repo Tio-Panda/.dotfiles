@@ -1,0 +1,9 @@
+-- local lsp = require('lsp-zero')
+-- lsp.preset('recommended')
+--
+-- require('panda.lsp.mason')
+-- M = require('panda.lsp.lsp')
+-- N = require('panda.lsp.cmp')
+--
+--
+-- lsp.ensure_installed(M.ensure_installed)

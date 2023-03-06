@@ -1,0 +1,50 @@
+#!/bin/bash
+# Created by: ThePrimeagen
+
+if [[ $# -eq 1 ]]; then
+    selected=$1
+else
+    configs=`echo "home nrc trc zrc arc llo" | tr ' ' '\n'`
+    proyects=`find ~/tareas/ ~/cursos ~/CSES ~/.dotfiles/.scripts ~/Proyectos/ -mindepth 1 -maxdepth 1 -type d`
+    selected=`printf "$configs\n$proyects" | fzf `
+    # selected=$(find ~/tareas/ ~/cursos ~/CSES ~/.scripts ~/Proyectos/ -mindepth 1 -maxdepth 1 -type d | fzf)
+fi
+
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+#selected_name=$(basename "$selected" | tr . _)
+selected_name=$(echo $selected | sed --expression "s@$HOME/@@" | tr -d .| tr / -)
+
+if [[ -z $selected_name ]]; then
+    selected_name="home"
+fi
+
+if [[ $selected_name == "nrc" ]]; then
+    selected="$HOME/.config/nvim/after/plugin/"
+    window_name="plugin"
+elif [[ $selected_name == "trc" ]]; then
+    selected="$HOME/.config/tmux/"
+elif [[ $selected_name == "zrc" ]]; then
+    selected="$HOME/.config/zsh/"
+elif [[ $selected_name == "arc" ]]; then
+    selected="$HOME/.config/alacritty/"
+elif [[ $selected_name == "llo" ]]; then
+    selected="$HOME/LLO/"
+elif [[ $selected_name == "home" ]]; then
+    selected="$HOME"
+fi
+
+tmux_running=$(pgrep tmux)
+
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+    tmux new-session -s $selected_name -c $selected -n $window_name
+    exit 0
+fi
+
+if ! tmux has-session -t=$selected_name 2> /dev/null; then
+    tmux new-session -ds $selected_name -c $selected -n $window_name
+fi
+
+tmux switch-client -t $selected_name

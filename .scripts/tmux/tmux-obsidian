@@ -1,0 +1,28 @@
+#!/bin/bash
+
+l=$OBSIDIAN
+f1d="$l/002-Lenguajes $l/003-Herramientas $l/004-Conceptos $l/005-Frameworks $l/008-Web"
+f2d="$l/001-U"
+f1=`find $f1d -mindepth 1 -maxdepth 1 -type d | sed --expression "s@$l/@@"`
+f2=`find $f2d -mindepth 2 -maxdepth 2 -type d | sed --expression "s@$l/@@"`
+selected=`printf "$f1\n$f2" | fzf`
+
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+name=`basename "$selected" | tr . _ | cut -d ' ' -f 1`
+selected=$l$selected
+
+tmux neww -n "$name" -S -c "$selected"
+tmux select-window -t "$name"
+tmux send-keys "nvim" Enter
+
+# If its executed from tmux-session-helper
+if [[ $1 == 0 ]]; then
+    tmux kill-window -t "zsh"
+fi    
+
+# If its executed from prefix+o
+# if [[ $1 == 1 ]]; then
+# fi    
