@@ -61,7 +61,7 @@ return packer.startup(function(use)
             { 'petertriho/cmp-git' },
             { 'f3fora/cmp-spell' },
             { 'kdheepak/cmp-latex-symbols' },
-            { 'zbirenbaum/copilot-cmp',             after = { 'copilot.lua' } },
+            -- { 'zbirenbaum/copilot-cmp',             after = { 'copilot.lua' } },
             -- Snippets
             { 'L3MON4D3/LuaSnip' },
             { 'rafamadriz/friendly-snippets' },
@@ -69,7 +69,7 @@ return packer.startup(function(use)
     }
     use { 'onsails/lspkind.nvim' }
     use { 'folke/trouble.nvim' }
-    use { "zbirenbaum/copilot.lua" }
+    -- use { "zbirenbaum/copilot.lua" }
     -- use { "github/copilot.vim" }
 
     -- DAP
@@ -84,7 +84,7 @@ return packer.startup(function(use)
     -- Terminal
     use { 'akinsho/toggleterm.nvim', tag = '*' }
     use { "alexghergh/nvim-tmux-navigation" }
-    use { "Pocco81/true-zen.nvim" }
+    -- use { "Pocco81/true-zen.nvim" }
     -- use { "folke/zen-mode.nvim" }
 
     -- Editor UI
