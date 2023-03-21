@@ -19,6 +19,13 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 #Las variables OBSIDIAN, BIBLIOTECA y alguna otra sean globales.
 
 export OBSIDIAN="$HOME/LLO/"
+export OBSIDIANWIN="/mnt/c/Users/sebas/Desktop/LLO/"
+
+export TERMUX=0
+termux=$PREFIX | grep -o "com.termux"
+if [[ "$termux" = "com.termux" ]]; then
+    export TERMUX=1
+fi
 
 # Windows Exports
 export Roaming="/mnt/c/Users/sebas/AppData/Roaming/"
