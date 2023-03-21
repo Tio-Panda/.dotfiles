@@ -1,7 +1,10 @@
 #!/bin/bash
 # NOTE: You are choosing the SOURCE
 
-win="/mnt/c/Users/sebas/Desktop/LLO/"
+# NOTE: Do not execute if TERMUX
+if [[ $TERMUX -eq 1 ]]; then
+    exit 0
+fi
 
 if [[ $# -eq 1 ]]; then
     selected=''
@@ -21,14 +24,14 @@ fi
 # From windows to Linux
 if [[ $1 == 'windows' ]] || [[ $selected == 'Source=Windows' ]]; then
     echo 'print win->linux'
-    rsync -hvrPt $win $OBSIDIAN --include='**.gitignore' --exclude='/.git' --filter=':- .gitignore' --delete-after
+    rsync -hvrPt $OBSIDIANWIN $OBSIDIAN --include='**.gitignore' --exclude='/.git' --filter=':- .gitignore' --delete-after
     exit 0
 fi    
 
 # From Linux to Windows
 if [[ $1 == 'linux' ]] || [[ $selected == 'Source=Linux' ]]; then
     echo 'print linux->win'
-    rsync -hvrPt $OBSIDIAN $win --include='**.gitignore' --exclude='/.git' --filter=':- .gitignore' --delete-after
+    rsync -hvrPt $OBSIDIAN $OBSIDIANWIN --include='**.gitignore' --exclude='/.git' --filter=':- .gitignore' --delete-after
     exit 0
 fi
 
