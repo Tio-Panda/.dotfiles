@@ -1,0 +1,19 @@
+#!/usr/bin/bash
+
+WSL_PACKAGES=(
+    curl fzf openssh neovim tmux stow zsh 
+)
+
+WSL_PACKAGES=(
+   
+)
+
+if [[ $TERMUX -eq 1 ]]; then
+    PACKAGES=WSL_PACKAGES
+else
+    PACKAGES=TERMUX_PACKAGES
+fi
+
+function installPackages() {
+    for PACKAGE in "$PACKAGE[@]}"; do
+        
