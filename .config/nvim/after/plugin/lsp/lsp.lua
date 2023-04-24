@@ -5,11 +5,11 @@ lsp.preset('recommended')
 
 -- Config ensure installed servers
 lsp.ensure_installed({
-    'tsserver',
-    'eslint',
-    'jsonls',
-    'lua_ls',
-    'rust_analyzer',
+    -- 'tsserver',
+    -- 'eslint',
+    -- 'jsonls',
+    -- 'lua_ls',
+    -- 'rust_analyzer',
 })
 
 -- Config personalizated servers
@@ -17,9 +17,9 @@ local home_dir = os.getenv("HOME")
 package.path = home_dir .. "/.config/nvim/after/plugin/?.lua;" .. package.path
 
 local config_servers = {
-    'jsonls',
-    'lua_ls',
-    'ltex',
+    -- 'jsonls',
+    -- 'lua_ls',
+    -- 'ltex',
 }
 
 for _, server in pairs(config_servers) do
