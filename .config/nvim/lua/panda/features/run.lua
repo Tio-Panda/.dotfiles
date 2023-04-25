@@ -40,6 +40,9 @@ vim.api.nvim_create_user_command("ExecFileData", function()
     execLang(cmd)
 end, {})
 
+vim.api.nvim_create_user_command("ExecMake", function()
+    vim.cmd([[TermExec cmd="make start" direction=float]])
+end, {})
 --=====================
 -- Keymaps
 --=====================
@@ -51,4 +54,5 @@ end
 
 map("n", "<F5>", ":ExecFile<CR>", "Execute current file")
 map("n", "<leader><F5>", ":ExecFileData<CR>", "Execute current file with pre-input")
+map("n", "<F6>", ":ExecMake<CR>", "Execute make start")
 --Hacer que un C-F5 o algo asi me deje cambiar a ejecutar con el output cambiado o con algun elemento de entrada. (.dat)
