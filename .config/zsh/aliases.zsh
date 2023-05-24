@@ -21,6 +21,13 @@ alias arc='tmux-sessionizer arc'
 alias m="git checkout master"
 alias s="git checkout stable"
 
+alias gl="git log"
+alias gs="git status"
+alias gc="git clone --bare"
+
+alias gta="git worktree add"
+alias gtr="git worktree remove --force"
+
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
