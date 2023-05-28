@@ -23,7 +23,7 @@ if [[ -z $selected_name ]]; then
 fi
 
 if [[ $selected_name == "nrc" ]]; then
-    selected="$HOME/.config/nvim/after/plugin/"
+    selected="$HOME/.config/nvim/lua/plugins/"
     window_name="plugin"
 elif [[ $selected_name == "trc" ]]; then
     selected="$HOME/.config/tmux/"
