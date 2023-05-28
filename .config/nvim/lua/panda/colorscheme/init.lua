@@ -30,7 +30,7 @@ M.setup = function()
 
     -- Reset colors
     if vim.g.colors_name then
-        vim.cd("hi clear")
+        vim.cmd("hi clear")
     end
 
     vim.o.termguicolors = true

@@ -1,1 +1,0 @@
---TODO: Crear snippets para los cuadraditos de color, que eran como quotes o algo asi, ni idea la verdad
