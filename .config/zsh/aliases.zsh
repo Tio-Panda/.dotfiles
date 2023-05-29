@@ -28,6 +28,8 @@ alias gc="git clone --bare"
 alias gta="git worktree add"
 alias gtr="git worktree remove --force"
 
+alias p="git pull"
+
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
