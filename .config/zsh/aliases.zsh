@@ -19,7 +19,6 @@ alias arc='tmux-sessionizer arc'
 alias m="git checkout master"
 alias s="git checkout stable"
 
-alias gl="git log"
 alias gs="git status"
 alias gcb="git clone --bare"
 
@@ -36,7 +35,16 @@ alias ps="git push"
 
 alias g='(){ git commit -a -m "$1"; git push }'
 
+# alias gl="git log "
+alias gl='(){ git log --max-count=$1 --abbrev-commit --decorate --format=format:"%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)" --all }'
+alias glf='(){ git log --max-count=$1 --abbrev-commit --decorate --pretty=short }'
+alias glg1="(){ git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all }"
+alias glg2="(){ git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' }"
+
+alias gauthors="git log --format='%aN <%aE>' | grep -v 'users.noreply.github.com' | sort -u --ignore-case"
+
 #TODO: Add alias for diff and solve commits diff
+#diff --name-only --diff-filter=U
 
 alias gcundo="git reset --soft HEAD~"
 
