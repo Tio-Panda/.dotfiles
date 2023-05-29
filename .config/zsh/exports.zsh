@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/bin/bash
+
 # HISTFILE="$XDG_DATA_HOME"/zsh/history
 HISTSIZE=1000000
 SAVEHIST=1000000
@@ -15,19 +16,28 @@ export PATH=$PATH:$s/tmux:$s/rsync:$s/git:$s/stow
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-#TODO: manera para identificar si estoy en wsl o termux para que
-#Las variables OBSIDIAN, BIBLIOTECA y alguna otra sean globales.
+# Identify Operating System
+if [[ $(uname -o) == "Android" ]]; then
+    export OS="Termux"
+elif [[ -n "$WSL_DISTRO_NAME" ]]; then
+    export OS="WSL"
+elif [[ $(uname -s) == "Darwin" ]]; then
+    export OS="macOS"
+else
+    export OS="idk"
+fi
 
-export OBSIDIAN="$HOME/LLO/"
-export OBSIDIANWIN="/mnt/c/Users/sebas/Desktop/LLO/"
-
-export TERMUX=0
-termux=$PREFIX | grep -o "com.termux"
-if [[ "$termux" = "com.termux" ]]; then
-    export TERMUX=1
+# Define OBSIDAN Folder 
+if [[ "$OS" == "WSL" ]]; then
+    export OBSIDIAN="$HOME/LLO/"
+elif [[ "$OS" == "Termux" ]]; then
+    export OBSIDIAN="storage/shared/La-Libreta-Online"
+else
+    export OBSIDIAN="storage/shared/La-Libreta-Online"
 fi
 
 # Windows Exports
+export OBSIDIANWIN="/mnt/c/Users/sebas/Desktop/LLO/"
 export Roaming="/mnt/c/Users/sebas/AppData/Roaming/"
 
 # Termux Exports
