@@ -8,3 +8,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     group = highlight_group,
     pattern = '*',
 })
+
+-- Stop newline comments
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufEnter", "BufRead" }, {
+	callback = function()
+		vim.opt.formatoptions:remove{ "c", "r", "o" }
+        -- vim.cmd([[set formatoptions-=cro]])
+	end,
+})

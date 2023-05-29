@@ -1,4 +1,4 @@
-require('panda.set')
+require('panda.settings')
 require('panda.keymaps')
 require('panda.features')
 require('panda.lazy')
