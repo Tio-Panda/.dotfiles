@@ -14,6 +14,7 @@ install_termux_modules() {
         "fzf" "stow" "openssh" "git" "ripgrep" "fd"
         "python" "luajit" "nodejs"
         "autoconf" "ninja" "ncurses"
+        "zsh" "tmux" "neovim"
     )
 
     # Instalar los módulos uno por uno 
