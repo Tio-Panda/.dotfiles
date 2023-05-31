@@ -24,5 +24,6 @@ install_zsh() {
     echo "zsh listo!"
 
     # Instalando ZAP para zsh
+    # TODO: OJO, instalar zap antes de los dotfiles, ya que se sobreescribe el .zshrc
     zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
 }

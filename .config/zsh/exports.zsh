@@ -31,9 +31,9 @@ fi
 if [[ "$OS" == "WSL" ]]; then
     export OBSIDIAN="$HOME/LLO/"
 elif [[ "$OS" == "Termux" ]]; then
-    export OBSIDIAN="storage/shared/La-Libreta-Online"
+    export OBSIDIAN="$HOME/storage/shared/La-Libreta-Online"
 else
-    export OBSIDIAN="storage/shared/La-Libreta-Online"
+    export OBSIDIAN="$HOME/storage/shared/La-Libreta-Online"
 fi
 
 # Windows Exports
