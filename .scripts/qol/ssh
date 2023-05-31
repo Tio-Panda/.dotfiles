@@ -1,0 +1,16 @@
+#!/bin/bash
+
+file=$HOME/.ssh/id_rsa.pub
+
+if [ ! -f "$file" ]; then
+    cd ~
+    mkdir -p .ssh
+    cd  ~/.ssh
+
+    read -p "Enter email: " email
+    echo $email
+
+    ssh-keygen -o -t rsa -C "${email}"
+fi
+
+cat ~/.ssh/id_rsa.pub
