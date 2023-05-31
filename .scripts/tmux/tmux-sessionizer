@@ -32,7 +32,7 @@ elif [[ $selected_name == "zrc" ]]; then
 elif [[ $selected_name == "arc" ]]; then
     selected="$HOME/.config/alacritty/"
 elif [[ $selected_name == "llo" ]]; then
-    selected="$HOME/LLO/"
+    selected=$OBSIDIAN
 elif [[ $selected_name == "home" ]]; then
     selected="$HOME"
 fi
