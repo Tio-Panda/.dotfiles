@@ -19,7 +19,7 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 # Identify Operating System
 if [[ $(uname -o) == "Android" ]]; then
     export OS="Termux"
-elif [[ -n "$WSL_DISTRO_NAME" ]]; then
+elif uname -r | grep -q "WSL"; then
     export OS="WSL"
 elif [[ $(uname -s) == "Darwin" ]]; then
     export OS="macOS"
