@@ -60,12 +60,13 @@ zstyle ':vcs_info:git:*' formats "$git"
 #user="%B%{$fg[blue]%}[%{$fg[white]%}%n%{$fg[red]%}@%{$fg[white]%}%m%{$fg[blue]%}]"
 #user="%B%{$fg[blue]%}[%{$fg_bold[red]%}%n%{$fg[blue]%}]"
 state="%(?:%{$fg_bold[green]%}[  ]:%{$fg_bold[red]%}[  ])"
+env="(${VIRTUAL_ENV:t:gs/%/%%})"
 dir="%{$fg[white]%}%~"
 out="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜)"
 out2="%(?:%{$fg_bold[green]%} :%{$fg_bold[red]%})"
 
-prompt_normal="$state $dir $out2 "
-prompt_git="$state $dir $out\$vcs_info_msg_0_ $out2 "
+# prompt_normal="$state $env $dir $out2 "
+# prompt_git="$state $env $dir $out\$vcs_info_msg_0_ $out2 "
 
 prompt_precmd() {
     vcs_info
@@ -81,10 +82,19 @@ prompt_chpwd() {
 precmd() {
     vcs_info
     if [[ -z ${vcs_info_msg_0_} ]]; then
-        PROMPT=$prompt_normal
-        RPROMPT=''
+        if [[ -n ${VIRTUAL_ENV} ]];then
+            export VIRTUAL_ENV_DISABLE_PROMPT=1
+            PROMPT="$state $env $dir $out2 "
+        else
+            PROMPT="$state $dir $out2 "
+        fi
     else
-        PROMPT=$prompt_git
-        RPROMPT=''
+        if [[ -n ${VIRTUAL_ENV} ]];then
+            export VIRTUAL_ENV_DISABLE_PROMPT=1
+            PROMPT="$state $env $dir $out\$vcs_info_msg_0_ $out2 "
+        else
+            PROMPT="$state $dir $out\$vcs_info_msg_0_ $out2 "
+        fi
     fi
+    RPROMPT=''
 }

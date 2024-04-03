@@ -6,6 +6,8 @@ date=$(date '+%Y/%m/%d - %H:%M')
 cd $selected
 if [[ $1 == 'push' ]]; then
     git add . && git commit -m "Sync $date" && git push
+
+    # tmux neww bash -c "curl -s cht.sh/$selected~$query & while [ : ]; do sleep 1; done"
 fi
 
 if [[ $1 == 'pull' ]]; then

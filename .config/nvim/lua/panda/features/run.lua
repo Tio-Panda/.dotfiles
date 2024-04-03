@@ -11,6 +11,7 @@ local execLang = function(cmd)
     local langs= {
         ['py'] = "python3 %s",
         ['lua'] = "python3 %s",
+        ['go'] = "go run %s",
     }
 
     local name = vim.fn.expand("%:t")

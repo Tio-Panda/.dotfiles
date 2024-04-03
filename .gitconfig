@@ -1,3 +1,5 @@
 [user]
 	name = Tio-Panda
 	email = sebastian.gutierrez.milla@gmail.com
+[init]
+	defaultBranch = main

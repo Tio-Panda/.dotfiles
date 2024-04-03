@@ -1,1 +1,1 @@
-require('panda')
+require("panda")

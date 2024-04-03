@@ -3,9 +3,9 @@ vim.opt.guicursor = ""
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
---vim.scriptencoding = "uft-8"
--- vim.opt.encoding = "uft-8"
---vim.opt.fileencoding = "uft-8"
+vim.scriptencoding = "utf-8"
+vim.opt.encoding = "utf-8"
+vim.opt.fileencoding = "utf-8"
 
 vim.opt.fileformat = "unix"
 
@@ -27,7 +27,7 @@ vim.opt.termguicolors = true
 
 vim.opt.formatoptions:remove{ "c", "r", "o" }
 
-vim.opt.winbar= "%=%f"
+-- vim.opt.winbar= "%=%f"
 vim.opt.laststatus = 3
 -- TODO: Asegurarme de que highlight WinSeparator guibg=NONE
 
@@ -55,7 +55,7 @@ vim.opt.cmdheight = 1
 vim.opt.spell = false
 -- vim.opt.spelloptions = 'camel'
 vim.opt.spelllang = { 'en_us', 'es_es' }
-vim.g.spellfile_URL = "https://ftp.nluug.nl/vim/runtime/spell/"
+vim.g.spellfile_URL = "https://ftp.nluug.nl/pub/vim/runtime/spell/"
 
 -- Folder to save undo history
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"

@@ -8,6 +8,7 @@ export TERMINAL="alacritty"
 export PATH="$HOME/.local/bin":$PATH
 export MANPAGER='nvim +Man!'
 export MANWIDTH=999
+export VIRTUAL_ENV_DISABLE_PROMPT=0
 
 s=$HOME/.dotfiles/.scripts
 export PATH=$PATH:$s/tmux:$s/rsync:$s/git:$s/stow
@@ -16,10 +17,15 @@ export PATH=$PATH:$s/tmux:$s/rsync:$s/git:$s/stow
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
+# Golang
+# export GOPATH=$HOME/code
+# export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+export PATH=$PATH:/usr/local/go/bin
+
 # Identify Operating System
 if [[ $(uname -o) == "Android" ]]; then
     export OS="Termux"
-elif [[ -n "$WSL_DISTRO_NAME" ]]; then
+elif uname -r | grep -q "WSL"; then
     export OS="WSL"
 elif [[ $(uname -s) == "Darwin" ]]; then
     export OS="macOS"

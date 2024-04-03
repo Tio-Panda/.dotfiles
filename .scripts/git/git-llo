@@ -1,0 +1,28 @@
+#!/bin/bash
+
+selected=`echo "push pull" | tr ' ' '\n' | fzf`
+date=$(date '+%Y/%m/%d - %H:%M')
+
+gPush="git commit -a -m 'Sync $date'; git push"
+gPull="git pull"
+rsyncLinWin="rsync-obsidian 'linux'"
+rsyncWinLin="rsync-obsidian 'windows'"
+close="echo 'CTRL+C to close'"
+while="while [ : ]; do sleep 1; done"
+
+if [[ $selected == 'push' ]]; then
+    if [[ $OS == 'WSL' ]]; then 
+        tmux neww bash -c "$rsyncWinLin; $gPush; $close; $while"
+    else
+        tmux neww bash -c "$gPush; $close; $while"
+    fi
+
+fi
+
+if [[ $selected == 'pull' ]]; then
+    if [[ $OS == 'WSL' ]]; then 
+        tmux neww bash -c "$gPull; $rsyncLinWin; $close; $while"
+    else
+        tmux neww bash -c "$gPull; $close; $while"
+    fi
+fi

@@ -1,7 +1,9 @@
 #!/bin/sh
 
 # Useful Alias
+alias "."="cd .."
 alias n=nvim
+alias n1="nvim -c':e#<1'"
 alias la="ls -la"
 alias zrel="source ~/.config/zsh/.zshrc"
 alias f="tmux-sessionizer"

@@ -11,6 +11,9 @@ map("n", "J", "mzJ`z", "Delete \\n with cursor fix")
 
 map("n", "U", "<C-r>", "Redo")
 
+-- Writting
+map("i", "<C-BS>", "<C-w>", "Delete entire word")
+
 -- Substitute
 map("n", "<leader>rac", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "[r]eplace [a]ll [c]urrent matches")
 

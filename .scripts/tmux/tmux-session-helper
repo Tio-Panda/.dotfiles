@@ -29,7 +29,9 @@ if [[ $selected == "arc" ]]; then
 fi
 
 if [[ $selected == "llo" ]]; then
-    tmux neww tmux-obsidian 0
+   
+    tmux neww git-llo
+    # tmux neww tmux-obsidian 0
     exit 0
 fi
 

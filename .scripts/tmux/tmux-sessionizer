@@ -5,7 +5,7 @@ if [[ $# -eq 1 ]]; then
     selected=$1
 else
     configs=`echo "home nrc trc zrc arc llo" | tr ' ' '\n'`
-    proyects=`find ~/tareas/ ~/cursos ~/CSES ~/.dotfiles/.scripts ~/Proyectos/ -mindepth 1 -maxdepth 1 -type d`
+    proyects=`find ~/code/usm/ ~/cursos ~/CSES ~/.dotfiles/.scripts ~/Proyectos/ -mindepth 1 -maxdepth 1 -type d`
     selected=`printf "$configs\n$proyects" | fzf `
     # selected=$(find ~/tareas/ ~/cursos ~/CSES ~/.scripts ~/Proyectos/ -mindepth 1 -maxdepth 1 -type d | fzf)
 fi
@@ -32,7 +32,7 @@ elif [[ $selected_name == "zrc" ]]; then
 elif [[ $selected_name == "arc" ]]; then
     selected="$HOME/.config/alacritty/"
 elif [[ $selected_name == "llo" ]]; then
-    selected="$HOME/LLO/"
+    selected=$OBSIDIAN
 elif [[ $selected_name == "home" ]]; then
     selected="$HOME"
 fi
