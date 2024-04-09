@@ -57,12 +57,25 @@ config_dotfiles() {
     stow .
     git remote set-url origin git@github.com:Tio-Panda/.dotfiles.git
 
-    #TODO: Solo en TERMUX NO BORRAMOS .termux
+    #TODO: Solo en TERMUX SI BORRAMOS .termux
+
 
     # Terminamos de configurar zsh
     command -v zsh | sudo tee -a /etc/shells
     sudo chsh -s "$(command -v zsh)" "${USER}"
     echo "Terminamos de configurar los dotfiles"
+
+    # Esto seria para poder definir zsh como el shell por defecto
+    zsh | chsh #Investigar mejor esto
+
+    # instalar zap para los plugins de zsh
+    # Esta en el git de zap-zsh
+    # Al instalar esta wea se borra el .zshrc original de los dotfiles, hacer esto en la parte de los modulos.
+
+    # Agregar el termux-setup-storage
+
+    # Agregar los scripts para sincronizar llo
+
 }
 
 # Install modules

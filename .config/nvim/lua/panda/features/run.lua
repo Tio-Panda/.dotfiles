@@ -30,6 +30,13 @@ local execLang = function(cmd)
     end
 end
 
+local execNameMake = function(cmd)
+    local full_name = vim.fn.expand("%:t")
+    local name = full_name:match("(.+)%..+")
+    local aux = string.format(cmd, name)
+    vim.cmd(aux)
+end
+
 vim.api.nvim_create_user_command("ExecFile", function()
     local cmd = [[TermExec cmd="%s" direction=float]]
     execLang(cmd)
@@ -42,8 +49,14 @@ vim.api.nvim_create_user_command("ExecFileData", function()
 end, {})
 
 vim.api.nvim_create_user_command("ExecMake", function()
-    vim.cmd([[TermExec cmd="make start" direction=float]])
+    vim.cmd([[TermExec cmd="make run" direction=float]])
 end, {})
+
+vim.api.nvim_create_user_command("ExecMakeData", function()
+    local cmd = [[TermExec cmd="make run TARGET=%s" direction=float]]
+    execNameMake(cmd)
+end, {})
+
 --=====================
 -- Keymaps
 --=====================
@@ -55,5 +68,6 @@ end
 
 map("n", "<F5>", ":ExecFile<CR>", "Execute current file")
 map("n", "<leader><F5>", ":ExecFileData<CR>", "Execute current file with pre-input")
-map("n", "<F6>", ":ExecMake<CR>", "Execute make start")
+map("n", "<F6>", ":ExecMake<CR>", "Execute make run")
+map("n", "<leader><F6>", ":ExecMakeData<CR>", "Execute make run with TARGET=name")
 --Hacer que un C-F5 o algo asi me deje cambiar a ejecutar con el output cambiado o con algun elemento de entrada. (.dat)
