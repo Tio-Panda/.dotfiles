@@ -11,7 +11,7 @@ export MANWIDTH=999
 export VIRTUAL_ENV_DISABLE_PROMPT=0
 
 s=$HOME/.dotfiles/.scripts
-export PATH=$PATH:$s/tmux:$s/rsync:$s/git:$s/stow
+export PATH=$PATH:$s/tmux:$s/rsync:$s/git:$s/stow:$s/qol
 
 # nvm
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
