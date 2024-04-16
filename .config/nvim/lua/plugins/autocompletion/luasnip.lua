@@ -4,8 +4,11 @@ return {
     build = "make install_jsregexp",
     dependencies = { "rafamadriz/friendly-snippets" },
     config = function()
-        require("luasnip.loaders.from_vscode").lazy_load()
-        require("plugins.autocompletion.snippets.makefile")
+        local p = "plugins.autocompletion.snippets."
+        require(p .. "makefile")
+        require(p .. "cpp")
+
+        -- require("luasnip.loaders.from_vscode").lazy_load()
     end,
 
 }
