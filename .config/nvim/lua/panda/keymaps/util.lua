@@ -5,7 +5,8 @@ local map = function(mode, keys, func, desc, opts)
 end
 
 -- Scripts
-map("n", "<M-f>", "<CMD>!tmux neww ~/.scripts/tmux/tmux-sessionizer<CR>", "Open sessionizer", { silent = true })
+-- TODO: Sacar este comando ya que se puede usar con el prefix de tmux
+-- map("n", "<M-f>", "<CMD>!tmux neww ~/.scripts/tmux/tmux-sessionizer<CR>", "Open sessionizer", { silent = true })
 
 -- Chmod
 map("n", "<leader>x", "<cmd>!chmod +x %<CR>", "Make file executable", { silent = true })

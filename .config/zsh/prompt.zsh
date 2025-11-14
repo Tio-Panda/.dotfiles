@@ -60,13 +60,29 @@ zstyle ':vcs_info:git:*' formats "$git"
 #user="%B%{$fg[blue]%}[%{$fg[white]%}%n%{$fg[red]%}@%{$fg[white]%}%m%{$fg[blue]%}]"
 #user="%B%{$fg[blue]%}[%{$fg_bold[red]%}%n%{$fg[blue]%}]"
 state="%(?:%{$fg_bold[green]%}[  ]:%{$fg_bold[red]%}[  ])"
-env="(${VIRTUAL_ENV:t:gs/%/%%})"
 dir="%{$fg[white]%}%~"
 out="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜)"
 out2="%(?:%{$fg_bold[green]%} :%{$fg_bold[red]%})"
 
 # prompt_normal="$state $env $dir $out2 "
 # prompt_git="$state $env $dir $out\$vcs_info_msg_0_ $out2 "
+
+precmd_get_conda_env_name() {
+    if [[ -n $CONDA_DEFAULT_ENV ]]; then
+        CONDA_ENV="($CONDA_DEFAULT_ENV) "
+    else
+        CONDA_ENV=""
+    fi
+}
+
+precmd_get_venv_env_name() {
+    if [[ -n ${VIRTUAL_ENV} ]];then
+        export VIRTUAL_ENV_DISABLE_PROMPT=1
+        VENV_ENV="(${VIRTUAL_ENV:t:gs/%/%%}) "
+    else
+        VENV_ENV=""
+    fi
+}
 
 prompt_precmd() {
     vcs_info
@@ -79,22 +95,15 @@ prompt_chpwd() {
 }
 #add-zsh-hook chpwd prompt_chpwd
 
-precmd() {
+precmd_functions+=( precmd_get_venv_env_name )
+precmd_functions+=( precmd_get_conda_env_name )
+precmd_update_prompt() {
     vcs_info
     if [[ -z ${vcs_info_msg_0_} ]]; then
-        if [[ -n ${VIRTUAL_ENV} ]];then
-            export VIRTUAL_ENV_DISABLE_PROMPT=1
-            PROMPT="$state $env $dir $out2 "
-        else
-            PROMPT="$state $dir $out2 "
-        fi
+        PROMPT="$state $VENV_ENV$CONDA_ENV$dir $out2 "
     else
-        if [[ -n ${VIRTUAL_ENV} ]];then
-            export VIRTUAL_ENV_DISABLE_PROMPT=1
-            PROMPT="$state $env $dir $out\$vcs_info_msg_0_ $out2 "
-        else
-            PROMPT="$state $dir $out\$vcs_info_msg_0_ $out2 "
-        fi
+        PROMPT="$state $VENV_ENV$CONDA_ENV $dir $out\$vcs_info_msg_0_ $out2 "
     fi
     RPROMPT=''
 }
+precmd_functions+=( precmd_update_prompt )

@@ -1,4 +1,4 @@
-#files: 966	version: 5.9
+#files: 967	version: 5.9
 
 _comps=(
 '-' '_precommand'
@@ -1038,6 +1038,7 @@ _comps=(
 'ntalk' '_other_accounts'
 'numfmt' '_numfmt'
 'nvim' '_vim'
+'nvm' '_bash_complete -o default -F __nvm'
 'nvram' '_nvram'
 'objdump' '_objdump'
 'od' '_od'
@@ -1676,6 +1677,7 @@ _comps=(
 'ytalk' '_other_accounts'
 'yum' '_yum'
 'yumdb' '_yum'
+'zap' '_zap'
 'zargs' '_zargs'
 'zcalc' '_zcalc'
 'zcat' '_zcat'
@@ -2031,7 +2033,8 @@ autoload -Uz _SUSEconfig __arguments _a2ps _a2utils _aap \
             _zed _zfs _zfs_dataset _zfs_pool _zftp \
             _zip _zle _zlogin _zmodload _zmv \
             _zoneadm _zones _zparseopts _zpty _zsh \
-            _zsh-mime-handler _zsocket _zstyle _ztodo _zypper
+            _zsh-mime-handler _zsocket _zstyle _ztodo _zypper \
+            _zap
 autoload -Uz +X _call_program
 
 typeset -gUa _comp_assocs

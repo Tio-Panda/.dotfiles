@@ -3,8 +3,9 @@ return {
         python = {
             analysis = {
                 typeCheckingMode = "off",
+                diagnosticMode = "openFilesOnly",
+                useLibraryCodeForTypes = false,
             }
         }
     }
 }
-

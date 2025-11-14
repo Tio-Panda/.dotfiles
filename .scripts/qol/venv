@@ -1,0 +1,25 @@
+#!/bin/bash
+
+VENV_NAME=".venv"
+case "$1" in
+    create)
+        echo "Creando entorno virtual en ${VENV_NAME}..."
+        python3 -m venv "./${VENV_NAME}"
+        ;;
+    freeze)
+        pip freeze > requirements.txt
+        ;;
+    install)
+        pip install -r requirements.txt
+        ;;
+    toggle)
+        if [[ -z "$VIRTUAL_ENV" ]]; then
+            source "${VENV_NAME}/bin/activate"
+        else
+            deactivate
+        fi
+        ;;
+    *)
+        exit 1
+        ;;
+esac

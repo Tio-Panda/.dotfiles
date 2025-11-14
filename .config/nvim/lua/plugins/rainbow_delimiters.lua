@@ -22,7 +22,7 @@ return {
                 'RainbowDelimiterViolet',
                 'RainbowDelimiterCyan',
             },
-            blacklist = { 'c', 'cpp' },
+            -- blacklist = { 'c', 'cpp' },
         })
 
     end

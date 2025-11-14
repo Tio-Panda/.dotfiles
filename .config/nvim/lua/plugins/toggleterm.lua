@@ -27,6 +27,7 @@ return {
     end
 }
 
+-- TODO: Ver si conviene en vez de tener terminal flotante, dejarlo abajo corte vscode
 
 -- TODO: Agregar funciones con toggleterm para react y cosas asi
 -- function _G.set_terminal_keymaps()

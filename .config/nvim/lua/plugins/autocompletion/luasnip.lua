@@ -1,3 +1,5 @@
+--TODO: Se puede dejar esto completamente en el archivo de blink y usar la config de los snipets
+-- return {}
 return {
     "L3MON4D3/LuaSnip",
     version = "2.*",
@@ -10,5 +12,4 @@ return {
 
         -- require("luasnip.loaders.from_vscode").lazy_load()
     end,
-
 }

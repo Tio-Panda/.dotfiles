@@ -48,7 +48,7 @@ alias gauthors="git log --format='%aN <%aE>' | grep -v 'users.noreply.github.com
 #TODO: Add alias for diff and solve commits diff
 #diff --name-only --diff-filter=U
 
-alias gcundo="git reset --soft HEAD~"
+alias gundo="git reset --soft HEAD~"
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'

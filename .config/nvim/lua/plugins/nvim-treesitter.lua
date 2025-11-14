@@ -1,42 +1,49 @@
 return {
-    'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
-    event = { 'BufRead', 'BufNewFile' },
-    dependencies =
-        { 'nvim-treesitter/nvim-treesitter-textobjects'
-    },
-    config = function()
-        require("nvim-treesitter.configs").setup({
-            -- Add languages to be installed here that you want installed for treesitter
-            -- ensure_installed = {
-            --     'c',
-            --     'cpp',
-            --     'go',
-            --     'lua',
-            --     'python',
-            --     'rust',
-            --     'typescript',
-            --     'javascript',
-            --     'vim',
-            --     'markdown'
-            -- },
-            auto_install = true,
-            ignore_install = { 'help' },
-
-            highlight = {
-                enable = true,
-                additional_vim_regex_highlighting = { 'markdown' },
-            },
-            indent = { enable = true, disable = { 'python' } },
-            incremental_selection = {
-                enable = true,
-                keymaps = {
-                    init_selection = '<CR>',
-                    node_incremental = '<CR>',
-                    scope_incremental = 'false',
-                    node_decremental = '<BS>',
+    {
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
+        config = function()
+            require('nvim-treesitter.configs').setup({
+                ensure_installed = {
+                    'c',
+                    'cpp',
+                    'vimdoc',
+                    'query',
+                    'go',
+                    'lua',
+                    'python',
+                    'rust',
+                    'typescript',
+                    'javascript',
+                    'vim',
+                    'vimdoc',
+                    'markdown',
+                    'markdown_inline'
                 },
-            },
-        })
-    end
+                auto_install = false,
+                highlight = {
+                    enable = true,
+                    disable = function(_, buf)
+                        local max_filesize = 100 * 1024 -- 100 KB
+                        local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+                        if ok and stats and stats.size > max_filesize then
+                            return true
+                        end
+                    end,
+
+                    additional_vim_regex_highlighting = false,
+                },
+                indent = { enable = true, disable = { 'python' } },
+                incremental_selection = {
+                    enable = true,
+                    keymaps = {
+                        init_selection = '<CR>',
+                        node_incremental = '<CR>',
+                        scope_incremental = 'false',
+                        node_decremental = '<BS>',
+                    },
+                },
+            })
+        end,
+    }
 }

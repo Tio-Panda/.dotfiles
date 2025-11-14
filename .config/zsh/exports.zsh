@@ -12,6 +12,9 @@ export VIRTUAL_ENV_DISABLE_PROMPT=0
 
 s=$HOME/.dotfiles/.scripts
 export PATH=$PATH:$s/tmux:$s/rsync:$s/git:$s/stow:$s/qol
+# export PATH=$PATH:$s/tmux:$s/rsync:$s/git:$s/stow:
+
+# source $s/qol
 
 # nvm
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
@@ -21,6 +24,9 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 # export GOPATH=$HOME/code
 # export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 export PATH=$PATH:/usr/local/go/bin
+export PATH="$PATH:$(go env GOPATH)/bin"
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib/
 
 # Identify Operating System
 if [[ $(uname -o) == "Android" ]]; then

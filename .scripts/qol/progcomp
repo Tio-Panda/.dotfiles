@@ -15,5 +15,3 @@ for i in $(seq 1 $n_inputs)
 do
     touch input$i
 done
-
-

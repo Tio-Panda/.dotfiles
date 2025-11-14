@@ -28,6 +28,7 @@ vim.opt.termguicolors = true
 vim.opt.formatoptions:remove{ "c", "r", "o" }
 
 -- vim.opt.winbar= "%=%f"
+vim.opt.winbar= ""
 vim.opt.laststatus = 3
 -- TODO: Asegurarme de que highlight WinSeparator guibg=NONE
 
